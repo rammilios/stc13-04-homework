@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomWords {
 
-    private String word = "";
+    private String word;
 
     public RandomWords(int maxSize) {
         String word = generateWord(maxSize);
@@ -12,6 +12,7 @@ public class RandomWords {
     }
 
     private String generateWord(int maxSize) {
+        word = "";
         Random random = new Random();
         int length = random.nextInt(maxSize - 1) + 1;
         for (int i = 0; i < length; i++) {

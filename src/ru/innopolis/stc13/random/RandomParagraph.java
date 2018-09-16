@@ -18,6 +18,9 @@ public class RandomParagraph {
         if (probability == 0) {
             chance = 0;
         }
+        else if (probability == 1) {
+            chance = 1;
+        }
         else {
             chance = random.nextInt(probability - 1) + 1;
         }
