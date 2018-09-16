@@ -6,7 +6,7 @@ public class RandomFiles {
 
     public void getFiles(String path, int n, String[] words, int size, int probability) {
 
-        int currentSize;
+        int currentSize, previousSize;
         String line;
 
         for (int i = 1; i <= n; i++) {
@@ -18,8 +18,13 @@ public class RandomFiles {
                 while (currentSize < size) {
                     RandomParagraph paragraph = new RandomParagraph(words, probability);
                     line = paragraph.getParagraph();
-                    currentSize += line.getBytes("UTF-8").length;
+                    previousSize = currentSize;
+                    currentSize += line.length() + 2;
                     if (currentSize < size) {
+                        dataOutputStream.writeUTF(line);
+                    }
+                    else {
+                        line = line.substring(0, size - previousSize - 2);
                         dataOutputStream.writeUTF(line);
                     }
                 }
