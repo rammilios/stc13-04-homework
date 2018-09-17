@@ -14,18 +14,20 @@ public class RandomFiles {
 
             String filepath = String.format("%stext%2d.txt", path, i);
 
-            try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(filepath))) {
+            try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filepath))) {
                 while (currentSize < size) {
                     RandomParagraph paragraph = new RandomParagraph(words, probability);
                     line = paragraph.getParagraph();
                     previousSize = currentSize;
                     currentSize += line.length() + 2;
                     if (currentSize < size) {
-                        dataOutputStream.writeUTF(line);
+                        byte[] buffer = line.getBytes();
+                        bufferedOutputStream.write(buffer, 0, line.length());
                     }
                     else {
-                        line = line.substring(0, size - previousSize - 2);
-                        dataOutputStream.writeUTF(line);
+                        line = line.substring(0, size - previousSize);
+                        byte[] buffer = line.getBytes();
+                        bufferedOutputStream.write(buffer, 0, line.length());
                     }
                 }
                 System.out.println("Файл сгенерирован");
