@@ -13,7 +13,7 @@ public class RandomSentence {
         this.sentence = sentence;
     }
 
-    private List<String> generateSentence(int maxSize, String[] words, int chance) {
+    public List<String> generateSentence(int maxSize, String[] words, int chance) {
         Random random = new Random();
 
         int length = random.nextInt(maxSize-1) + 1;

@@ -11,7 +11,7 @@ public class RandomWords {
         this.word = word;
     }
 
-    private String generateWord(int maxSize) {
+    public String generateWord(int maxSize) {
         word = "";
         Random random = new Random();
         int length = random.nextInt(maxSize - 1) + 1;
@@ -23,8 +23,8 @@ public class RandomWords {
         return word;
     }
 
-    public String[] getWordsArray() {
-        String[] array = new String[1000];
+    public String[] getWordsArray(int wordsArrayLenght) {
+        String[] array = new String[wordsArrayLenght];
         for (int i = 0; i < array.length; i++) {
             array[i] = generateWord(15);
         }
@@ -36,4 +36,3 @@ public class RandomWords {
     }
 
 }
-
